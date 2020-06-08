@@ -1,0 +1,62 @@
+﻿<Window x:Class="CalculatorDemo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CalculatorDemo"
+        mc:Ignorable="d"
+        Title="Calculator" MinHeight="400" MinWidth="350" Height="400" Width="350">
+    <Window.Resources>
+        <Style x:Key="NumbericButtonStyle" TargetType="Button">
+            <Setter Property="FontSize" Value="20"/>
+        </Style>
+        <Style x:Key="CancelButtonStyle" TargetType="Button" BasedOn="{StaticResource NumbericButtonStyle}">
+            <Setter Property="Background" Value="Red"/>
+        </Style>
+
+        <Style x:Key="CalculateButtonStyle" TargetType="Button" BasedOn="{StaticResource NumbericButtonStyle}">
+            <Setter Property="Background" Value="LightGreen"/>
+        </Style>
+    </Window.Resources>
+    
+    <Grid ShowGridLines="False">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalContentAlignment="Right" BorderThickness="1" Margin="4" Content="{Binding FullExpression, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="5" HorizontalContentAlignment="Right" BorderThickness="1" Margin="4" Content="{Binding CurrentResult, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="2" Grid.Column="0" FontSize="30" HorizontalContentAlignment="Right" Grid.ColumnSpan="5" BorderBrush="Black" BorderThickness="1" Margin="4" Content="{Binding CurrentValue, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button x:Name="btn7" Grid.Row="3" Margin="4" Grid.Column="0" Content="7" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="7"/>
+        <Button x:Name="btn8" Grid.Row="3" Margin="4" Grid.Column="1" Content="8" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="8"/>
+        <Button x:Name="btn9" Grid.Row="3" Margin="4" Grid.Column="2" Content="9" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="9"/>
+        <Button x:Name="btn4" Grid.Row="4" Margin="4" Grid.Column="0" Content="4" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="4"/>
+        <Button x:Name="btn5" Grid.Row="4" Margin="4" Grid.Column="1" Content="5" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="5"/>
+        <Button x:Name="btn6" Grid.Row="4" Margin="4" Grid.Column="2" Content="6" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="6"/>
+        <Button x:Name="btn1" Grid.Row="5" Margin="4" Grid.Column="0" Content="1" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="1"/>
+        <Button x:Name="btn2" Grid.Row="5" Margin="4" Grid.Column="1" Content="2" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="2"/>
+        <Button x:Name="btn3" Grid.Row="5" Margin="4" Grid.Column="2" Content="3" Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="3"/>
+        <Button x:Name="btn0" Grid.Row="6" Margin="4" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource NumbericButtonStyle}" Content="0" Command="{Binding AppendCommand}" CommandParameter="0" />
+        <Button x:Name="btnDecimal" Grid.Row="6" Margin="4" Grid.Column="2" Content="." Style="{StaticResource NumbericButtonStyle}" Command="{Binding AppendCommand}" CommandParameter="."/>
+
+        <Button x:Name="btnCancel" Grid.Row="3" Grid.RowSpan="2" Margin="4" Grid.Column="4" Content="C" Style="{StaticResource CancelButtonStyle }" Command="{Binding CancelCommand}"/>
+        <Button x:Name="btnAdd" Grid.Row="3" Margin="4" Grid.Column="3" Content="+" Style="{StaticResource NumbericButtonStyle}" Command="{Binding OperationCommand}" CommandParameter="+"/>
+        <Button x:Name="btnSubstract" Grid.Row="4" Margin="4" Grid.Column="3" Content="-" Style="{StaticResource NumbericButtonStyle}" Command="{Binding OperationCommand}" CommandParameter="-"/>
+        <Button x:Name="btnMultiply" Grid.Row="5" Margin="4" Grid.Column="3" Content="*" Style="{StaticResource NumbericButtonStyle}" Command="{Binding OperationCommand}" CommandParameter="*"/>
+        <Button x:Name="btnADivide" Grid.Row="6" Margin="4" Grid.Column="3" Content="/" Style="{StaticResource NumbericButtonStyle}"  Command="{Binding OperationCommand}" CommandParameter="/"/>
+        <Button x:Name="btnCalculate" Grid.Row="5" Grid.RowSpan="2" Margin="4" Grid.Column="4"  Content="=" Style="{StaticResource  CalculateButtonStyle}"  Command="{Binding CalculateCommand}" />
+
+    </Grid>
+</Window>
